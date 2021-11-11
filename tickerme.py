@@ -8,7 +8,8 @@ try:
     import plotly.express as px
     import yfinance as yf
     from yahoo_fin import stock_info
-    
+    from PIL import Image
+       
     import plotly.graph_objs as ago
 
 
@@ -48,7 +49,7 @@ else:
 
     	with st.sidebar:
     		st.write("Crypto Inputs")
-    		symbol = st.selectbox("Select Symbol",stock_info.tickers_nasdaq())
+    		symbol = st.selectbox("Select Symbol",stock_info.get_top_crypto())
     		a = st.date_input("From date", datetime.date.today() - datetime.timedelta(30)) 
     		b = st.date_input("To Date", datetime.date.today())
 
@@ -552,10 +553,9 @@ else:
     }
 
     with st.sidebar:
-        st.markdown(
-            'With Love :) </br>!["TickerMe"]',
-            unsafe_allow_html=True,
-        )
+        image = Image.open('logo.jpg')
+        st.image(image, caption='By Creative financial solutions')
+        st.markdown('<h1 style="float: left;">WITH LOVE :)</h1>',unsafe_allow_html=True,)
         selected_analysis = st.radio("Select Analysis", list(analysis_dict.keys()))
         st.write("---")
 
